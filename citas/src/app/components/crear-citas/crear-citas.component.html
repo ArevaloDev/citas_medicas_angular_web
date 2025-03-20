@@ -1,1 +1,31 @@
-<p>crear-citas works!</p>
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title text-center">Agregar cita</h5>
+
+    <form [formGroup]="form" (ngSubmit)="crearCita()">
+
+
+    <div class="form-group mb-3">
+      <label for="nombre">Nombre</label>
+      <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese su nombre" id="nombre">
+      <span class="text-danger text-center " *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">El Nombre es requerido (minimo 3 caracteres)</span>
+
+    </div>
+    <div class="form-group mb-3">
+      <label for="fecha">Fecha</label>
+      <input formControlName="fecha" type="date" class="form-control" id="fecha">
+      <span class="text-danger text-center " *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">La fecha es obligatoria</span>
+    </div>
+    <div class="form-group mb-3">
+      <label for="hora">Hora</label>
+      <input formControlName="hora" type="time" class="form-control" id="hora">
+      <span class="text-danger text-center " *ngIf="form.get('hora')?.invalid && form.get('hora')?.touched">La hora es obligatoria</span>
+    </div>
+    <div class="form-group mb-3">
+      <label for="sintomas">Sintomas</label>
+      <textarea formControlName="sintomas" id="sintomas" rows="3" class="form-control"></textarea>
+    </div>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Agregar cita</button>
+  </form>
+  </div>
+</div>
