@@ -11,9 +11,6 @@ export class CitasService {
   public cita$ = this.citas.asObservable();
   constructor() { }
 
-  // obtenerCitas = ():Citas[] => {
-    // return this.citas;
-  // }
   crearCita = (cita:Citas) => {
       const citasActuales = this.citas.value;
       this.citas.next([...citasActuales, cita])

@@ -1,20 +1,25 @@
-
-
-<div *ngIf="citas | async as citas">
-  <div *ngIf="citas.length === 0"  class="card bg-light mb-3">
-    <div  class="card-body">
+<div *ngIf="cita$ | async as citas" class="w-100">
+  <div *ngIf="citas.length === 0" class="card bg-light mb-3">
+    <div class="card-body">
       <h5 class="card-title text-center">No hay citas para mostrar</h5>
     </div>
   </div>
 
-</div>
-
-<div *ngFor="let cita of citas | async" class="card bg-light mb-2">
-  <div class="card-body">
-   <p class="card-text"><span>Nombre:</span> {{cita.nombre}}</p>
-   <p class="card-text"><span>Fecha:</span> {{cita.fecha}}</p>
-   <p class="card-text"><span>Hora:</span> {{cita.hora}}</p>
-   <p class="card-text"><span>Sintomas:</span> {{cita.sintomas}}</p>
-   <button class="btn btn-danger btn-block">Eliminar</button>
+  <div class="d-flex align-content-stretch flex-wrap ">
+    <div
+      *ngFor="let cita of mostrarCItas ? citas : citas.slice(0, 2)"
+      class="card bg-light mb-2 m-2"
+    >
+      <div class="card-body">
+        <p class="card-text"><span>Nombre:</span> {{ cita.nombre }}</p>
+        <p class="card-text"><span>Fecha:</span> {{ cita.fecha }}</p>
+        <p class="card-text"><span>Hora:</span> {{ cita.hora }}</p>
+        <p class="card-text"><span>Sintomas:</span> {{ cita.sintomas }}</p>
+        <button class="btn btn-danger btn-block">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="citas.length >= 2" (click)="toggleCitas()" class="mt-4">
+    <button class="btn btn-primary">Ver mas citas</button>
   </div>
 </div>
