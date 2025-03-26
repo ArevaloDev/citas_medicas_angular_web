@@ -1,15 +1,11 @@
 <div class="card bg-light">
   <div class="card-body">
     <h5 class="card-title text-center">Agregar cita</h5>
-
     <form [formGroup]="form" (ngSubmit)="crearCita()">
-
-
     <div class="form-group mb-3">
       <label for="nombre">Nombre</label>
       <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese su nombre" id="nombre">
       <span class="text-danger text-center " *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">El Nombre es requerido (minimo 3 caracteres)</span>
-
     </div>
     <div class="form-group mb-3">
       <label for="fecha">Fecha</label>
@@ -26,6 +22,11 @@
       <textarea formControlName="sintomas" id="sintomas" rows="3" class="form-control"></textarea>
     </div>
     <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Agregar cita</button>
+    <div *ngIf=" repetido$ | async as repetida " class="mt-4">
+      <div *ngIf="repetida"  class="alert alert-danger" role="alert">
+        Ya se encuentra una cita con la misma fecha y hora
+      </div>
+    </div>
   </form>
   </div>
 </div>

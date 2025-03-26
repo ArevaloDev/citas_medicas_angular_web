@@ -3,5 +3,6 @@ export interface Citas {
   fecha:string;
   hora:string;
   sintomas:string;
+  id:number;
 
 }

@@ -13,6 +13,7 @@ export class ListaCitasComponent implements OnInit {
 
   public cita$!:Observable<Citas[]>;
   public mostrarCItas: boolean = false;
+
   constructor(
     private citasService:CitasService,
     private router:Router
@@ -25,6 +26,10 @@ export class ListaCitasComponent implements OnInit {
   toggleCitas = () => {
     this.mostrarCItas = !this.mostrarCItas;
     this.router.navigate(['/citas']);
+  }
+
+  eliminarCita = (id:number) => {
+    this.citasService.eliminarCita(id);
   }
 
 
